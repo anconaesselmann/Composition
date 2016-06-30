@@ -1,0 +1,25 @@
+DELIMITER //
+
+CREATE FUNCTION createImage(userId INT UNSIGNED, fileName VARCHAR(255))
+	RETURNS INT UNSIGNED
+	BEGIN
+		DECLARE result INT UNSIGNED DEFAULT 0;
+
+		INSERT INTO images
+			VALUES(NULL, userId, fileName, NULL);
+
+		RETURN LAST_INSERT_ID();
+	END //
+
+CREATE FUNCTION deleteImage(userId INT UNSIGNED, imageId INT UNSIGNED)
+	RETURNS INT
+	BEGIN
+		DELETE FROM images
+			WHERE image_id = imageId
+				AND contractor_id = userId;
+
+		RETURN ROW_COUNT();
+	END //
+
+
+DELIMITER ;

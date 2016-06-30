@@ -1,0 +1,15 @@
+
+
+<VirtualHost *:80>
+    ServerAdmin %3$s
+    DocumentRoot "%1$s/public"
+    ServerName %2$s.dev
+    ServerAlias www.%2$s.dev
+    ErrorLog "%1$s/logs/error_log.txt"
+    CustomLog "%1$s/logs/access_log.txt" common
+    <Directory "%1$s/public">
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>

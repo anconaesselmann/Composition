@@ -1,0 +1,8 @@
+[
+    {
+        "serializer": {
+            "class": "aae/serialize/Json",
+            "static": true
+        }
+    }
+]

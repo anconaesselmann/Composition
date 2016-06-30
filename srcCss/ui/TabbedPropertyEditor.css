@@ -1,0 +1,31 @@
+.tabbedPorpertyEditor {
+    background: white;
+    display: inline-block;
+}
+.tabbedPorpertyEditorElement {
+    padding: .2em 1em .2em 1em;
+    display: inline-block;
+    background: #CCC;
+}
+.tabbedPorpertyEditorSelected {
+    background: #888;
+}
+.tabbedPorpertyEditorElement:hover {
+    background: #999;
+}
+.tabbedPorpertyEditorFormContainer {
+    margin:1em;
+}
+.tabbedPorpertyEditorTextarea {
+    resize: none;
+    width: 100%;
+    height: 10em;
+}
+.tabbedPropertyEditorSubmitButton {
+    padding: .2em;
+    background: #CCC;
+    display: inline-block;
+}
+.tabbedPropertyEditorSubmitButton:hover {
+    background: #999;
+}

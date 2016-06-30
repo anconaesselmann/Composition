@@ -1,0 +1,5 @@
+{
+    "conf_email_link_text": "confirm your email address",
+    "conf_email_body_text": "Please %s to complete the registration process.",
+    "conf_email_subj_text": "%s email verification"
+}

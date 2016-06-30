@@ -1,0 +1,390 @@
+[
+    {
+        "serializer": {
+            "class": "aae/serialize/Json",
+            "static": true
+        }
+    },
+    {
+        "jsonFileSerializer": {
+            "class": "aae/serialize/FileSerializer",
+            "args": [
+                {"dep": "serializer"}
+            ]
+        }
+    },
+    {
+        "postGetFiles": {
+            "class": "aae/dispatch/receiver/PostGetFiles",
+            "static": true
+        }
+    },
+    {
+        "router": {
+            "class": "aae/dispatch/Router",
+            "args": [
+                {"dep": "postGetFiles"}
+            ],
+            "static": true
+        }
+    },
+    {
+        "localizer": {
+            "class": "aae/ui/Localizer",
+            "args": [
+                {"dep": "jsonFileSerializer"},
+                {"dep": "uiDir"},
+                {"dep": "logger"}
+            ],
+            "static": true
+        }
+    },
+    {
+        "session": {
+            "class": "aae/app/Session",
+            "static": true
+        }
+    },
+    {
+        "logger": {
+            "class": "aae/log/ScreenLogger",
+            "setters": [
+                "debug"
+            ],
+            "static": true
+        }
+    },
+    {
+        "log_dir": "/"
+    },
+    {
+        "viewControllerResolutionStrategyDir": "protected/{:siteName:}/app/config.json"
+    },
+    {
+        "viewControllerResolutionStrategyContent": {
+            "class": "aae/serialize/FileSerializer",
+            "args": [
+                {"dep": "serializer"}
+            ],
+            "evaluate": {
+                "unserialize": [
+                    {"dep":"viewControllerResolutionStrategyDir"}
+                ]
+            },
+            "static": true
+        }
+    },
+    {
+        "viewControllerResolutionStrategy": {
+            "class": "aae/std/DIFactory",
+            "args": [
+                {"dep": "viewControllerResolutionStrategyContent"}
+            ],
+            "static": true
+        }
+    },
+    {
+        "dependencyResolver": {
+            "class": "aae/di/ArgNameDependencyResolver",
+            "args": [
+                {"dep": "viewControllerResolutionStrategy"}
+            ],
+            "static": true
+        }
+    },
+    {
+        "functionAPI": {
+            "class": "aae/db/FunctionAPI",
+            "args": [
+                {"dep": "pdo"},
+                {
+                    "dbName":"{:siteName:}",
+                    "debug":true
+                }
+            ]
+        }
+    },
+    {
+        "user": {
+            "class": "aae/app/User",
+            "args": [
+                {"dep": "functionAPI"},
+                {"dep": "session"}
+            ]
+        }
+    },
+    {
+        "email": {
+            "class": "aae/message/Email"
+        }
+    },
+    {
+        "senderMail": "DoNotReply@{:siteName:}.com"
+    },
+    {
+        "senderName": "{:siteName:}.com"
+    },
+    {
+        "url": "http://www.{:siteName:}.com"
+    },
+    {
+        "message": {
+            "class": "aae/app/Message",
+            "args": [
+                {"dep": "functionAPI"},
+                {"dep": "email"}
+            ]
+        }
+    },
+    {
+        "signup": {
+            "class": "aae/app/Signup",
+            "args": [
+                {"dep": "email"},
+                {"dep": "url"},
+                {"dep": "senderMail"},
+                {"dep": "senderName"},
+                {"dep": "localizer"}
+            ],
+            "static": true
+        }
+    },
+    {
+        "activity": {
+            "class": "aae/app/Activity",
+            "args": [
+                {"dep": "functionAPI"}
+            ],
+            "static": true
+        }
+    },
+    {
+        "secureImageLocation": "protected/{:siteName:}/resources/secureImages"
+    },
+    {
+        "secureImage": {
+            "class": "aae/app/SecureImage",
+            "args": [
+                {"dep": "functionAPI"},
+                {"dep": "secureImageLocation"},
+                {"dep": "headers"}
+            ],
+            "static": true
+        }
+    },
+    {
+        "headers": {
+            "class": "aae/dispatch/Headers",
+            "static": true
+        }
+    },
+    {
+        "api": {
+            "class": "aae/dispatch/Api",
+            "args": [
+                {"dep": "router"},
+                {"dep": "dependencyResolver"},
+                {"dep": "serializer"},
+                null,
+                {"dep": "logger"}
+            ],
+            "setters": [
+                {"setControllerEnding": ["ViewController"]}
+            ],
+            "static": true
+        }
+    },
+    {
+        "apiApi": {
+            "class": "aae/dispatch/Api",
+            "args": [
+                {"dep": "router"},
+                {"dep": "dependencyResolver"},
+                {"dep": "serializer"},
+                null,
+                null
+            ],
+            "setters": [
+                {"setControllerEnding": ["ApiController"]},
+                {"setTemplateDependencyName": ["apiTemplate"]}
+            ],
+            "static": true
+        }
+    },
+    {
+        "htmlEscaper": {
+            "class": "aae/ui/HtmlEscaper",
+            "static": true
+        }
+    },
+    {
+        "jsonEscaper": {
+            "class": "aae/ui/JsonEscaper",
+            "static": true
+        }
+    },
+    {
+        "templateConfigDir": "protected/{:siteName:}/ui/templates/html.config"
+    },
+    {
+        "templateConfigFileContent": {
+            "class": "aae/serialize/FileSerializer",
+            "args": [
+                {"dep": "serializer"}
+            ],
+            "evaluate": {
+                "unserialize": [
+                    {"dep":"templateConfigDir"}
+                ]
+            },
+            "static": true
+        }
+    },
+    {
+        "template": {
+            "class": "aae/ui/Template",
+            "args": [
+                {"dep":"templateConfigFileContent"},
+                {"dep":"resourceManager"},
+                {"dep":"htmlEscaper"}
+            ],
+            "static": true
+        }
+    },
+    {
+        "apiTemplateConfigDir": "protected/{:siteName:}/ui/templates/json.config"
+    },
+    {
+        "apiTemplateConfigFileContent": {
+            "class": "aae/serialize/FileSerializer",
+            "args": [
+                {"dep": "serializer"}
+            ],
+            "evaluate": {
+                "unserialize": [
+                    {"dep":"apiTemplateConfigDir"}
+                ]
+            },
+            "static": true
+        }
+    },
+    {
+        "apiTemplate": {
+            "class": "aae/ui/Template",
+            "args": [
+                {"dep":"apiTemplateConfigFileContent"},
+                {"dep":"resourceManager"},
+                {"dep":"jsonEscaper"}
+            ],
+            "static": true
+        }
+    },
+    {
+        "resourceManager": {
+            "class": "aae/ui/ResourceManagerDynamic",
+            "args": [
+                false,
+                true
+            ],
+            "static": true
+        }
+    },
+    {
+        "uiDir": "protected/{:siteName:}/ui"
+    },
+    {
+        "errorViewController": {
+            "class": "aae/ui/DefaultErrorViewController",
+            "args": [
+                {"dep": "template"},
+                {"dep": "localizer"}
+                /*{"dep": "dispatcher"}*/
+            ]
+        }
+    },
+    {
+        "phpClassHelper": {
+            "class": "aae/util/ControllerHelper",
+            "args": [
+                {"dep": "jsonFileSerializer"}
+            ],
+            "static": true
+        }
+    },
+    {
+        "logger": {
+            "class": "aae/log/StringLogger",
+            "setters": [
+                "debug"
+            ],
+            "static": true
+        }
+    },
+    {
+        "pdo": {
+            "class": "PDO",
+            "args": [
+                "mysql:host={:dbHost:}",
+                "{:dbUser:}",
+                "{:dbPassword:}"
+            ]
+        }
+    },
+    {
+        "functionAPI": {
+            "class": "aae/db/FunctionAPI",
+            "args": [
+                {"dep": "pdo"},
+                {"dbName":"{:siteName:}"}
+            ]
+        }
+    },
+    {
+        "signInRedirectURL": "/login"
+    },
+    {
+        "htmlFragmentApi": {
+            "class": "aae/dispatch/Api",
+            "args": [
+                {"dep": "router"},
+                {"dep": "dependencyResolver"},
+                {"dep": "serializer"},
+                null,
+                null
+            ],
+            "setters": [
+                {"setControllerEnding": ["ViewController"]},
+                {"setTemplateDependencyName": ["htmlFragmentTemplate"]}
+            ],
+            "static": true
+        }
+    },
+    {
+        "htmlFragmentTemplateConfigDir": "protected/{:siteName:}/ui/templates/html-fragment.config"
+    },
+    {
+        "htmlFragmentTemplateConfigFileContent": {
+            "class": "aae/serialize/FileSerializer",
+            "args": [
+                {"dep": "serializer"}
+            ],
+            "evaluate": {
+                "unserialize": [
+                    {"dep":"htmlFragmentTemplateConfigDir"}
+                ]
+            },
+            "static": true
+        }
+    },
+    {
+        "htmlFragmentTemplate": {
+            "class": "aae/ui/Template",
+            "args": [
+                {"dep":"htmlFragmentTemplateConfigFileContent"},
+                {"dep":"resourceManager"},
+                {"dep": "htmlEscaper"}
+            ],
+            "static": true
+        }
+    }
+]

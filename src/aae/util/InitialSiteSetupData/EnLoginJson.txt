@@ -1,0 +1,7 @@
+{
+    "incomplete_credentials": "Incomplete credentials.",
+    "signed_in": "Signed in.",
+    "not_signed_in": "Not signed in.",
+    "cookie_set": "A persistent login has been created.",
+    "signupLinkLabel": "Sign up"
+}

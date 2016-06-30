@@ -1,0 +1,51 @@
+<?php
+/**
+ *
+ */
+namespace  {
+	/**
+	 * @author Axel Ancona Esselmann
+	 * @package
+	 */
+	class SignupViewController extends \aae\ui\ViewController {
+        protected $_signup, $_user;
+
+        public function dependencies($user, $signup) {
+            $this->_user   = $user;
+            $this->_signup = $signup;
+        }
+
+		public function defaultAction() {
+			$this->useTemplate("SignupView");
+		}
+		public function confirmAction($c, $e, $lang) {
+			$this->useTemplate("DefaultView");
+			if (is_null($c) || is_null($e))
+				$message  = $this->localize("confirm_bad_link", $lang);
+			else {
+				$email    = urldecode($e);
+				$verified = $this->_user->verify($email, $c);
+				$message  = ($verified)	? sprintf($this->localize("account_created",     $lang), $email)
+										:         $this->localize("account_not_created", $lang);
+			}
+			$this->template["main"] = $message;
+		}
+
+		public function submitAction($userName, $userEmail, $userPassword, $lang) {
+			$this->useTemplate("DefaultView");
+			if (is_null($userName) || is_null($userEmail) || is_null($userEmail))
+				$message  = $this->localize("incomplete_credentials", $lang);
+			else {
+				try {
+					$code = $this->_user->create($userName, $userPassword, $userEmail);
+					if ($code) $success = $this->_signup->_sendRegistrationEmail($userEmail, $code, $lang);
+					$message = ($success) ? sprintf($this->localize("submit_success", $lang), $userEmail)
+										  :         $this->localize("submit_error",   $lang);
+				} catch (\Exception $e) {
+					$message = $this->localize("account_not_created", $lang);
+				}
+			}
+			$this->template["main"] = $message;
+		}
+	}
+}

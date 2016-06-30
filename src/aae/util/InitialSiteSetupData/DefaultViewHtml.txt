@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {$jsLinks}
+    {$cssLinks}
+    <title>{:siteName:}</title>
+  </head>
+  <body>
+    {$top}
+    <div id="content">
+      <div class="main">
+          {$main}
+      </div>
+    </div>
+    {$bottom}
+  </body>
+</html>

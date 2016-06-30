@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+
+    # Tell PHP that the mod_rewrite module is ENABLED.
+    SetEnv HTTP_MOD_REWRITE On
+
+    RewriteEngine on
+
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    # RewriteRule ([^/]*)([/]*)([^/^\d]*)([/]*)([^/]*)([/]*)(.*) index.php?controller=$1&action=$3&args=$5&extra=$7 [L,QSA]
+
+    RewriteRule ([^/]*)([/]*)([^/]*)([/]*)(.*) index.php?controller=$1&action=$3&args=$5 [L,QSA]
+
+</IfModule>

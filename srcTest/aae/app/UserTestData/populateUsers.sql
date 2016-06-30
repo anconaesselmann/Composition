@@ -1,0 +1,23 @@
+SELECT createUser("axel0",  "$2y$04$wwBpZ31UZUGrunwuhNPhxORtkPB010ayvVdf103.QgdlvIeScR8ji", "axelesselmann@gmail", "1234code", "127.0.0.1");
+SELECT createUser("axel1",  "$2y$04$wwBpZ31UZUGrunwuhNPhxORtkPB010ayvVdf103.QgdlvIeScR8ji", "a.xelesselmann@gmail", "1234code", "127.0.0.1");
+SELECT createUser("axel2",  "$2y$04$wwBpZ31UZUGrunwuhNPhxORtkPB010ayvVdf103.QgdlvIeScR8ji", "ax.elesselmann@gmail", "1234code", "127.0.0.1");
+SELECT createUser("axel3",  "$2y$04$wwBpZ31UZUGrunwuhNPhxORtkPB010ayvVdf103.QgdlvIeScR8ji", "axe.lesselmann@gmail", "1234code", "127.0.0.1");
+SELECT createUser("axel4",  "$2y$04$wwBpZ31UZUGrunwuhNPhxORtkPB010ayvVdf103.QgdlvIeScR8ji", "axel.esselmann@gmail", "1234code", "127.0.0.1");
+SELECT createUser("axel5",  "$2y$04$wwBpZ31UZUGrunwuhNPhxORtkPB010ayvVdf103.QgdlvIeScR8ji", "axele.sselmann@gmail", "1234code", "127.0.0.1");
+SELECT createUser("axel6",  "$2y$04$wwBpZ31UZUGrunwuhNPhxORtkPB010ayvVdf103.QgdlvIeScR8ji", "axeles.selmann@gmail", "1234code", "127.0.0.1");
+SELECT createUser("axel7",  "$2y$04$wwBpZ31UZUGrunwuhNPhxORtkPB010ayvVdf103.QgdlvIeScR8ji", "axeless.elmann@gmail", "1234code", "127.0.0.1");
+SELECT createUser("axel8",  "$2y$04$wwBpZ31UZUGrunwuhNPhxORtkPB010ayvVdf103.QgdlvIeScR8ji", "axelesse.lmann@gmail", "1234code", "127.0.0.1");
+SELECT createUser("axel9",  "$2y$04$wwBpZ31UZUGrunwuhNPhxORtkPB010ayvVdf103.QgdlvIeScR8ji", "axelessel.mann@gmail", "1234code", "127.0.0.1");
+SELECT createUser("axel10", "$2y$04$wwBpZ31UZUGrunwuhNPhxORtkPB010ayvVdf103.QgdlvIeScR8ji", "axelesselm.ann@gmail", "1234code", "127.0.0.1");
+
+SELECT verifyEmail("axelesselmann@gmail", "1234code");
+SELECT verifyEmail("a.xelesselmann@gmail", "1234code");
+SELECT verifyEmail("ax.elesselmann@gmail", "1234code");
+SELECT verifyEmail("axe.lesselmann@gmail", "1234code");
+SELECT verifyEmail("axel.esselmann@gmail", "1234code");
+SELECT verifyEmail("axele.sselmann@gmail", "1234code");
+SELECT verifyEmail("axeles.selmann@gmail", "1234code");
+SELECT verifyEmail("axeless.elmann@gmail", "1234code");
+SELECT verifyEmail("axelesse.lmann@gmail", "1234code");
+SELECT verifyEmail("axelessel.mann@gmail", "1234code");
+SELECT verifyEmail("axelesselm.ann@gmail", "1234code");

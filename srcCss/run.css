@@ -1,0 +1,37 @@
+.runItem {
+	#background-color: #3F0;
+	width: 44em;
+	margin-top: 2em;
+	margin-bottom: 2em;
+	
+	font-family: Arial, Helvetica, sans-serif;
+	color: #CCC;
+}
+.runTitle {
+	#background-color: #CCC;
+	margin-bottom: .5em;
+	font-size: 1.2em;
+}
+.runStats {
+	margin-bottom: .5em;
+	#background-color: #CCC;
+}
+.prominent {
+	color: #666;
+	font-weight: bold;
+}
+
+.runImage {
+	#background-color: #CCC;
+	height: 8em;
+	width: 12em;
+	float: left;
+	margin-right: 1em;
+	margin-bottom: .5em;
+}
+.runText {
+	margin-bottom: .5em;
+}
+.runText p {
+	margin: 0;
+}

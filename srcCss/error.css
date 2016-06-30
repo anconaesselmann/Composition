@@ -1,0 +1,10 @@
+#error {
+	color: #CCC;
+	height: 20em;
+	width: 30em;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 20em;
+	font-family: "Arial Black", Gadget, sans-serif;
+	border: 1em none #CCC;
+}

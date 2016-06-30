@@ -1,0 +1,14 @@
+.tabbedMenu {
+    background: #CCC;
+    display: inline-block;
+}
+.tabbedMenuElement {
+    padding: .2em 1em .2em 1em;
+    display: inline-block;
+}
+.tabbedMenuSelected {
+    background: #888;
+}
+.tabbedMenuElement:hover {
+    background: #999;
+}

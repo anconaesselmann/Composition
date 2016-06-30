@@ -1,0 +1,20 @@
+#imageUploader {
+    width: 55em;
+}
+.iuImageContainer {
+    padding: 1em;
+    width:8em;
+    height:6em;
+    display: inline-block;
+    position: relative;
+}
+.iuImage {
+  max-width:8em;
+  max-height:6em;
+  position: absolute;
+}
+.iuDeleteBtn {
+    position: absolute;
+    top:0;
+    right:0;
+}

@@ -1,0 +1,2 @@
+#!/bin/bash
+php protected/src/aae/util/InitialSiteSetup.php -bwsp "{:siteName:}"

@@ -1,0 +1,3 @@
+CREATE TABLE tests.works(id INT);
+INSERT INTO works VALUES(5);
+INSERT INTO works2 VALUES(999);

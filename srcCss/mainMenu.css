@@ -1,0 +1,76 @@
+/*************************************************/
+/*                   Site Menu                   */
+/*************************************************/
+#menu {
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size: 1.5em;
+	text-transform: lowercase;
+	position: relative;
+}
+.mitem {
+	height: 2em;
+	width: 7em;
+	display: inline-block;
+	text-align: center;
+}
+.mitem a {
+    text-decoration: none;
+	color: inherit;
+	display:block;
+}
+.mitem:hover {
+
+}
+.msubitem {
+	height: 2em;
+	width: 7em;
+	display:inline-block;
+	text-align: center;
+}
+.msubitem a {
+	/* pointer-events: none; */
+}
+.mSubItems {
+	position: absolute;
+	width: 7em;
+	background: rgba(255,255,255,0.95);
+	padding-top: 0em;
+	padding-right: .5em;
+	padding-bottom: 1em;
+	padding-left: .5em;
+	border-radius: 0em 0em .3em .3em;
+	display:none;
+	z-index:999999;
+}
+.msubitem .mSubItems .mitem {
+	text-align: right;
+}
+.msubitem:hover .mSubItems {
+	display:block;
+}
+.msep {
+	height: 2em;
+	width: 0.3em;
+	display: inline-block;
+	text-align: center;
+}
+
+
+
+.mSubItemsr {
+	position: absolute;
+	width: 7em;
+	background: rgba(255,255,255,0.95);
+	padding-top: .2em;
+	padding-right: .5em;
+	padding-bottom: .5em;
+	padding-left: .5em;
+	margin-left: 7em;
+	margin-top: -2.2em;
+	border-radius: .3em .3em .3em .3em;
+	display:none;
+	z-index:999999;
+}
+.msubitemr:hover .mSubItemsr {
+	display:block;
+}

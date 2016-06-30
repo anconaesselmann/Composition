@@ -1,0 +1,26 @@
+<?php
+/**
+ *
+ */
+namespace  {
+	/**
+	 * @author Axel Ancona Esselmann
+	 * @package
+	 */
+	class SignupTemplateController extends \aae\ui\AuthenticatedViewController {
+        protected $_signup, $_user;
+
+        public function dependencies($user, $signup) {
+            $this->_user   = $user;
+            $this->_signup = $signup;
+        }
+
+        public function confirmAction($c, $e, $lang) {
+            return $this->_signup->confrim($this->_user, $c, $e, $lang);
+        }
+
+        public function submitAction($userName, $userEmail, $userPassword, $lang) {
+            return $this->_signup->submit($this->_user, $userName, $userEmail, $userPassword, $lang);
+        }
+	}
+}

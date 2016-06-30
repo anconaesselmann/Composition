@@ -1,0 +1,68 @@
+.wordProcessor {
+    margin: 1em;
+    width: 20em;
+    height: 10em;
+    background-color: {$main_light};
+}
+.wordProcessor span {
+    color: gray;
+    white-space: pre;
+}
+.wordProcessor .wpTextField {
+    background-color: white;
+    margin: .5em;
+    width: 18em;
+    height: 8em;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: relative;
+    padding: .5em;
+}
+#cursor {
+/*    background-image:url("/svg/textBoxSprites1.svg");
+    display: inline-block;
+    content: " ";
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 2px 32px;
+    /*background-position: center center;
+    background-position: 0 0;*/
+    /*border-right: solid black 1px;*/
+}
+.highlight {
+    background-color: rgba(102,204,255,0.3);
+}
+.cursor.hidden {
+    display: none;
+}
+.createLink {
+
+}
+.wordProcessor .wpTextField a {
+    color:{$main};
+}
+.tsElem {
+    z-index: 2;
+    position: relative;
+}
+.cursor {
+/*    background-image:url("/svg/textBoxSprites1.svg");
+    display: inline-block;
+    content: " ";
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 2px 32px;
+    /*background-position: center center;
+    background-position: 0 0;*/
+    border-right: solid black 1px;
+    width: 1px;
+    height: 1em;
+    position: absolute;
+    top:0.5em;
+    left:0.5em;
+    z-index: 1;
+}

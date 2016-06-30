@@ -1,0 +1,3 @@
+<?php
+require $_SERVER["DOCUMENT_ROOT"]."/../protected/src/aae/autoload/AutoLoader.php";
+new \aae\ui\ApiIndex(basename(dirname(__FILE__)));

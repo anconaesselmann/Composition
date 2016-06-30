@@ -1,0 +1,53 @@
+[
+    {
+        "dep1": {
+            "class": "class/def/1.php",
+            "args": [
+                {"dep": "dep2"},
+                true
+            ]
+        }
+    },
+    {
+        "dep1": {
+            "class": "class/def/1.php",
+            "args": [
+                {"dep": "dep3"},
+                true
+            ]
+        }
+    },
+    {
+        "dep1": {
+            "class": "class/def/1.php",
+            "args": [
+                99,
+                88
+            ]
+        }
+    },
+    {
+        "dep1": {
+            "class": "class/def/2.php",
+            "args": [
+                5
+            ]
+        }
+    },
+    {
+        "dep1": {
+            "class": "class/def/2.php",
+            "args": [
+                5,
+                6
+            ]
+        }
+    },
+    {
+        "dep2": "aString1"
+    },
+    {
+        "dep3": "aString2"
+    }
+
+]

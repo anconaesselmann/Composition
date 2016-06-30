@@ -1,0 +1,2 @@
+
+INSERT INTO {:siteName:}.users values(1, 'DudeOnRock', '$2y$10$nxdyUGNlMPE4hpkigNqTCeWsoji1TLWWLTJnhN3MlQ4N18IP.SUYm', 'axel.esselmann@gmail.com', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1);

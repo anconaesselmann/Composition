@@ -1,0 +1,11 @@
+{
+    "confirm_bad_link": "Bad link.",
+    "account_created": "Account created. Email address %1$s successfully verified.",
+    "account_not_created": "The account could not be verified.",
+    "incomplete_credentials": "Incomplete credentials.",
+    "submit_success": "Please confirm your email address %1$s to complete registration.",
+    "submit_error": "An error occurred. An email could not be sent.",
+    "conf_email_link_text": "confirm your email address",
+    "conf_email_body_text": "Please %s to complete the registration process.",
+    "conf_email_subj_text": "%s email verification"
+}

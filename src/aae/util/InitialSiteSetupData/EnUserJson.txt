@@ -1,0 +1,11 @@
+{
+    "firstNameLabel": "First Name",
+    "lastNameLabel": "Last Name",
+    "phoneNbrLabel": "Phone Nbr",
+    "addressLabel": "Address",
+    "cityLabel": "City\/Town",
+    "zipLabel": "Zip",
+    "stateLabel": "State",
+    "countryLabel": "Country",
+    "imageLabel": "Profile Picture"
+}

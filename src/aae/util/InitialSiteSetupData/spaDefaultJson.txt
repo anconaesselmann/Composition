@@ -1,0 +1,5 @@
+{
+    "helloWorld": "Hola mundo!",
+    "defaultPageTitle": "{:siteName:}",
+    "errorLabel": "Error"
+}

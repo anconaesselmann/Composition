@@ -1,0 +1,28 @@
+<?php
+/**
+ *
+ */
+namespace  {
+	/**
+	 * @author Axel Ancona Esselmann
+	 * @package
+	 */
+	class LoginTemplateController extends \aae\ui\AuthenticatedViewController {
+		public function defaultAction() {
+			$this->useTemplate("doesNotExist");
+			if (!$this->user->isLoggedIn() && !$this->user->cookieLogin()) throw new \Exception("CookieLogin unsuccessful.", 1030142031);
+			$this->template["user"] = $this->user;
+		}
+		public function submitAction($userEmail, $userPassword, $lang, $apiCaller) {
+			if (is_null($userEmail) || is_null($userPassword))  throw new \Exception("Incomplete login credentials", 1030142029);
+			if (!$this->user->login($userEmail, $userPassword)) throw new \Exception("Incorrect login credentials",  1030142030);
+			if (!$this->user->setLoginCookie($apiCaller))       throw new \Exception("Cookie could not be set",      1030142032);
+            $this->useTemplate("doesNotExist");
+            $this->template["user"] = $this->user;
+			// return true;
+		}
+		public function logoutAction() {
+			return $this->user->logout();
+		}
+	}
+}

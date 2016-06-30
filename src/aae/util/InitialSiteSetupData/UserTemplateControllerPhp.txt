@@ -1,0 +1,71 @@
+<?php
+/**
+ *
+ */
+namespace  {
+	/**
+	 * @author Axel Ancona Esselmann
+	 * @package
+	 */
+	class UserTemplateController extends \aae\ui\AuthenticatedViewController {
+		protected $_secureImage;
+
+        public function dependencies($secureImage, $profilesImageLocation) {
+            $this->_secureImage = $secureImage;
+            $this->_secureImage->setLocation($profilesImageLocation);
+        }
+
+        public function defaultAuthenticatedAction() {
+            $this->useTemplate("EditUserView");
+            $details = $this->user->getUserDetails();
+            if (!$details) throw new \Exception("Database integrity compromised", 1209141308);
+
+            $this->template["first_name"]     = $details["first_name"] ?: "";
+            $this->template["last_name"]      = $details["last_name"] ?: "";
+            $this->template["phone_nbr"]      = $details["phone_nbr"] ?: "";
+            $this->template["address"]        = $details["address"] ?: "";
+            $this->template["city"]           = $details["city"] ?: "";
+            $this->template["zip"]            = $details["zip"] ?: "";
+            $this->template["state"]          = $details["state"] ?: "";
+            $this->template["country"]        = $details["country"] ?: "";
+            $this->template["image_url"]      = "{$this->user->getImage()}";
+        }
+        public function submit_editAuthenticatedAction(
+            $firstName,
+            $lastName,
+            $phoneNbr,
+            $address,
+            $city,
+            $zip,
+            $state,
+            $country,
+            $fileToUpload
+        ) {
+            $this->useTemplate("DefaultView");
+            $fileName = $this->user->getId().".jpg";
+            try {
+                if (is_array($fileToUpload) &&
+                    array_key_exists("size", $fileToUpload) &&
+                    $fileToUpload["size"] > 0
+                ) $imageUploadSuccess = $this->_secureImage->upload($fileToUpload, $this->user, $fileName);
+                $dataUploadSuccess = $this->user->updateUserDetails(
+                    $firstName,
+                    $lastName,
+                    $phoneNbr,
+                    $address,
+                    $city,
+                    $zip,
+                    $state,
+                    $country
+                );
+            } catch (\Exception $e) {
+                // temporary. Not conducive for internationalization
+                $this->template["main"] = $e->getMessage();
+                return;
+            }
+            //$this->template["main"] = json_encode($fileToUpload)."\nImageUploadSuccess: ".(string)$imageUploadSuccess."\dataUploadSuccess: ".(string)$dataUploadSuccess;
+            header(header("Location: /user", 301));
+            exit();
+        }
+	}
+}

@@ -1,0 +1,21 @@
+<?php
+/**
+ *
+ */
+namespace  {
+    /**
+     * @author Axel Ancona Esselmann
+     * @package
+     */
+    class ViewController extends \aae\ui\ViewController {
+        protected $model;
+
+        // public function dependencies() {
+        //     $this->model = ;
+        // }
+        public function defaultAction($id) {
+            $this->useTemplate("HelloWorldView");
+            $this->template["helloWorld"] = "Hello world from the view controller.";
+        }
+    }
+}

@@ -1,0 +1,23 @@
+#paginationNavigation {
+    width: 100%;
+    float: right;
+    height: 2em;
+    text-align: center;
+}
+.paginationNavigationItem {
+    display: inline-block;
+    vertical-align: middle;
+    color: gray;
+    text-align: center;
+    line-height: 2em;
+    min-width: 1.2em;
+}
+.paginationNavigationItem.hidden {
+    display: none;
+}
+.paginationNavigationItem#cbmCurrent {
+    padding:0 .5em 0 .5em;
+}
+.paginationNavigationItem a {
+    text-decoration: none;
+}

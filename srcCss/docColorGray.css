@@ -1,0 +1,73 @@
+@charset "UTF-8";
+body {
+}
+
+a:link {
+	color:#333;
+}
+a:visited {
+	color:#666;
+}
+a:hover {
+	color:#999;
+}
+a:active {
+	color:#CCC;
+}
+
+
+/*************************************************/
+/*                Page Dividers                  */
+/*************************************************/
+
+#content {
+	width: 60em;
+	margin:0 auto;
+}
+#top {
+	color: #CCC;
+}
+#main {
+	#background-color: #3F0;
+	display: inline-block;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1em;
+	color: #666;
+}
+#right {
+	#background-color: #CCC;
+	width: 15em;
+	height: 15em;
+	float: right;
+	display: inline-block;
+}
+
+li p {
+	padding: 0;
+	margin: 0;
+}
+li {
+	padding: 0;
+	margin: 0;
+}
+
+ul {
+	margin-top: 0;
+}
+h2 {
+	margin-bottom: 0;
+	margin-top: 1.5em;
+}
+h5 {
+	margin-top: 0;
+	margin-bottom: 1.5em;
+	margin-left: 1.5em;
+}
+hr {
+	margin-top: 0;
+}
+
+dd p {
+
+	margin-top: .2em;
+}

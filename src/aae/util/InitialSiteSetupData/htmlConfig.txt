@@ -1,0 +1,101 @@
+{
+    "base_dir": "protected/{:siteName:}/ui/templates/html/",
+    "js_base_dir": "protected/srcJs/",
+    "css_base_dir": "protected/srcCss/",
+    "js_model_dir": "protected/{:siteName:}/ui/jsControllers/",
+    "css_model_dir": "protected/{:siteName:}/ui/templates/css/",
+    "mod_rewrite_document_root": "public/{:siteName:}/",
+
+    "css_vars" : {
+        "{:siteName:}_main": "#246BB2",
+        "{:siteName:}_main_light": "#BDD3E8",
+        "{:siteName:}_main_dark": "",
+
+        "{:siteName:}_secondary": "#008F00",
+        "{:siteName:}_secondary_light": "#B2DDB2",
+        "{:siteName:}_secondary_dark": ""
+    },
+
+    "DefaultView": {
+        "template": "DefaultView.html",
+        "children": [
+            {
+                "id": "top",
+                "template": "top.html"
+            },
+            {
+                "id": "bottom",
+                "template": "bottom.html"
+            }
+        ]
+    },
+    "DefaultCSS": [
+        {
+            "link": "/css/dynamic/main.css",
+            "resources": [
+                "app/main.css",
+                "app/top.css",
+                "app/bottom.css"
+            ]
+        }
+    ],
+
+    "LoginView": {
+        "view": "DefaultView",
+        "children": [
+            {
+                "id": "main",
+                "template": "login.html"
+            }
+        ]
+    },
+
+    "SignupView": {
+        "view": "DefaultView",
+        "children": [
+            {
+                "id": "main",
+                "template": "signup.html"
+            }
+        ]
+    },
+
+    "ErrorView": {
+        "view": "DefaultView",
+        "children": [
+            {
+                "id": "main",
+                "template": "error.html"
+            }
+        ]
+    },
+    "ErrorCSS": [
+
+    ],
+
+    "HelloWorldView": {
+        "view": "DefaultView",
+        "children": [
+            {
+                "id": "main",
+                "template": "HelloWorldView.html"
+            }
+        ]
+    },
+    "HelloWorldJS": [
+        {
+            "link": "/js/dynamic/helloWorld.js",
+            "resources": [
+                "app/helloWorld.js"
+            ]
+        }
+    ],
+    "HelloWorldCSS": [
+        {
+            "link": "/css/dynamic/helloWorld.css",
+            "resources": [
+                "app/helloWorld.css"
+            ]
+        }
+    ]
+}

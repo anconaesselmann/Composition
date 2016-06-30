@@ -1,0 +1,3 @@
+
+        <p>{@helloWorld}</p>
+        <p>{$helloWorld}</p>

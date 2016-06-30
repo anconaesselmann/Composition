@@ -1,0 +1,5 @@
+[
+	"aae\\app\\User",
+    "aae\\app\\Connection",
+    "aae\\app\\Message"
+]

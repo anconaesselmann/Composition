@@ -1,0 +1,55 @@
+<?php
+/**
+ *
+ */
+namespace  {
+	/**
+	 * @author Axel Ancona Esselmann
+	 * @package
+	 */
+	class LoginViewController extends \aae\ui\AuthenticatedViewController {
+		public function defaultAction($redirectFrom = null) {
+			$this->template["redirectFrom"] = is_null($redirectFrom) ? "" : $redirectFrom;
+			if ($this->user->isLoggedIn()) {
+				$this->useTemplate("DefaultView");
+				$message = $this->localize("signed_in");
+				$this->template["main"] = $message;
+			} else {
+				$loggedIn = $this->user->cookieLogin();
+				if (!$loggedIn) {
+					$this->useTemplate("LoginView");
+				} else {
+					$this->internalRedirect("");
+				}
+			}
+		}
+
+		public function logoutAction() {
+			$this->user->logout();
+			$this->internalRedirect("");
+		}
+
+		public function setcookieAction() {
+			$this->useTemplate("DefaultView");
+			$this->user->setLoginCookie("test");
+			$message = $this->localize("cookie_set");
+			$this->template["main"] = $message;
+		}
+
+		public function submitAction($userEmail, $userPassword, $redirectFrom = null) {
+			if (!is_null($redirectFrom)) {
+				$redirectFrom = urldecode($redirectFrom);
+				header ("Location: $redirectFrom");
+			}
+			$this->useTemplate("DefaultView");
+			if (is_null($userEmail) || is_null($userEmail))
+				$message  = $this->localize("incomplete_credentials");
+			else {
+				$user     = $this->user;
+				$loggedIn = $user->login($userEmail, $userPassword);
+				$message  = ($loggedIn) ? $this->localize("signed_in") : $this->localize("not_signed_in");
+			}
+			$this->template["main"] = $message;
+		}
+	}
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx
+  version="1.1"
+  creator="RunKeeper - http://www.runkeeper.com"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.topografix.com/GPX/1/1"
+  xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd"
+  xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1">
+<trk>
+  <name><![CDATA[Running 1/27/14 12:44 pm]]></name>
+  <time>2014-01-27T12:44:58Z</time>
+<trkseg>
+<trkpt lat="37.761095000" lon="-122.493185000"><ele>61.5</ele><time>2014-01-27T12:44:58Z</time></trkpt>
+<trkpt lat="37.761139000" lon="-122.493076000"><ele>61.4</ele><time>2014-01-27T12:44:59Z</time></trkpt>
+<trkpt lat="37.761225000" lon="-122.492964000"><ele>61.4</ele><time>2014-01-27T12:45:02Z</time></trkpt>
+<trkpt lat="37.761316000" lon="-122.492965000"><ele>61.3</ele><time>2014-01-27T12:45:04Z</time></trkpt>
+<trkpt lat="37.761412000" lon="-122.492996000"><ele>61.3</ele><time>2014-01-27T12:45:06Z</time></trkpt>
+</trkseg>
+<trkseg>
+<trkpt lat="37.795804000" lon="-122.459085000"><ele>162.0</ele><time>2014-01-27T14:30:26Z</time></trkpt>
+<trkpt lat="37.795709000" lon="-122.459085000"><ele>162.0</ele><time>2014-01-27T14:30:33Z</time></trkpt>
+<trkpt lat="37.795621000" lon="-122.459056000"><ele>162.0</ele><time>2014-01-27T14:30:42Z</time></trkpt>
+<trkpt lat="37.795625000" lon="-122.459013000"><ele>162.0</ele><time>2014-01-27T14:32:29Z</time></trkpt>
+</trkseg>
+<trkseg>
+<trkpt lat="37.761497000" lon="-122.493030000"><ele>1061.0</ele><time>2014-01-27T16:01:38Z</time></trkpt>
+<trkpt lat="37.761405000" lon="-122.493013000"><ele>1061.1</ele><time>2014-01-27T16:01:42Z</time></trkpt>
+<trkpt lat="37.761328000" lon="-122.492951000"><ele>1061.3</ele><time>2014-01-27T16:01:46Z</time></trkpt>
+<trkpt lat="37.761328000" lon="-122.492951000"><ele>1061.0</ele><time>2014-01-27T16:01:46Z</time></trkpt>
+</trkseg>
+</trk>
+</gpx>

@@ -1,0 +1,169 @@
+<?php
+if (!array_key_exists(1, $argv)) exit("\nERROR:\nPlease specify a deployment target.\nDeployment targets have a folder with the same name inside the bootstrap directory.\n\n");
+
+$deploymentTarget    = $argv[1];
+$bootstrapDir        = dirname(__FILE__).DIRECTORY_SEPARATOR;
+$deploymentTargetDir = $bootstrapDir.$deploymentTarget.DIRECTORY_SEPARATOR;
+
+if (!file_exists($deploymentTargetDir)) exit("\nERROR:\nThe deployment target '$deploymentTarget' does not exist.\n\n");
+
+$password = "";
+$silentMode = false;
+$passwordMode = false;
+//$restoreFromFileMode = false;
+if (array_key_exists(2, $argv)) {
+    $args = explode("-", $argv[2]);
+    foreach ($args as $arg) {
+        if ($arg == "s") $silentMode = true;
+        if ($arg == "p") $passwordMode = true;
+        //if ($arg == "r") $restoreFromFileMode = true;
+    }
+}
+
+$appDir              = dirname($bootstrapDir).DIRECTORY_SEPARATOR;
+$baseDir             = dirname(dirname(dirname(dirname(__FILE__)))).DIRECTORY_SEPARATOR;
+$publicDir           = dirname($baseDir).DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR;
+$srcDir              = $baseDir."src".DIRECTORY_SEPARATOR;
+$autoLoaderDir       = $srcDir.'aae/autoload/AutoLoader.php';
+$rootDbConfig        = $deploymentTargetDir."rootDbConfig.cnf";
+$setupDir            = dirname(__FILE__).DIRECTORY_SEPARATOR."setup".DIRECTORY_SEPARATOR;
+$setupJsonDir        = $setupDir."setup.json";
+$setupDbDir          = $setupDir."dbSetup.sql";
+$setupSourceDbDir    = $deploymentTargetDir."dbSetup.sql";
+$postSetupDbDir      = $setupDir."postSetupInitialization.sql";
+$configJsonSource    = $deploymentTargetDir."config.json";
+$configJsonTarget    = $appDir."config.json";
+$htaccessSource      = $deploymentTargetDir.".htaccess";
+$htaccessTarget      = $publicDir.".htaccess";
+$initialValuesDir    = $setupDir."initialValues.sql";
+$modelsDir           = $appDir."models";
+
+$fileSet = [
+    $configJsonSource => $configJsonTarget,
+    $htaccessSource   => $htaccessTarget,
+    $setupSourceDbDir => $setupDbDir
+];
+
+foreach ($fileSet as $source => $target) {
+    $copyFile = true;
+    if (file_exists($target)) {
+
+        $delete = false;
+        if (!$silentMode) {
+            echo "The file $target already exists.\nWould you like to overwrite the file? (y | n)\n";
+                $handle = fopen ("php://stdin","r");
+                $line   = fgets($handle);
+                if(trim($line) == 'y'){
+                    $delete = true;
+                } else {
+                    $copyFile = false;
+                }
+        } else {
+            $delete = true;
+        }
+        if ($delete) {
+            unlink($target);
+            echo "deleting file $target\n";
+        }
+    }
+    if ($copyFile) {
+        if (($source == $htaccessSource) && ($deploymentTarget == "web")) {
+            copy($source, $target);
+            echo "copied '$source' to '$target'\n";
+        } else {
+            symlink($source, $target);
+            echo "creating symlink for '$target'\n";
+        }
+    }
+}
+
+//$sqlDumpDir = $baseDir.DIRECTORY_SEPARATOR."sqlDump".DIRECTORY_SEPARATOR;
+//if (!is_dir($sqlDumpDir)) {
+//    echo "Creating directory for sql dumps: $sqlDumpDir\n";
+//    system("echo $password | sudo -u root -S mkdir -p $sqlDumpDir");
+//    echo "Changing permissions on $sqlDumpDir\n";
+//    system("echo $password | sudo -u root -S chmod 777 $sqlDumpDir");
+//}
+
+
+//$sqlDumpFile      = $sqlDumpDir."last.sql";
+//$sqlDumpErrorFile = $baseDir.DIRECTORY_SEPARATOR."sqlDump".DIRECTORY_SEPARATOR."error.txt";
+
+//$number = 0;
+//while (true) {
+//    $number++;
+//    if (!file_exists($sqlDumpDir."prev".$number.".sql")) {
+//        rename($sqlDumpDir."last.sql", $sqlDumpDir."prev".$number.".sql");
+//        break;
+//    }
+//}
+
+//if ($restoreFromFileMode) {
+//    if (!array_key_exists(3, $argv)) die("no recovery file given");
+//    $sqlRecoveryFile = $sqlDumpDir.$argv[3];
+//    if ($passwordMode) {
+//        if (!array_key_exists(4, $argv)) die("no password given");
+//        $password = $argv[4];
+//    }
+//} else {
+    if ($passwordMode) {
+        if (!array_key_exists(3, $argv)) die("no password given");
+        $password = $argv[3];
+    }
+    //$sqlRecoveryFile  = $sqlDumpFile;
+//}
+if (!$passwordMode) {
+    $prompt  = "Enter the database password\n";
+    $command = "/usr/bin/env bash -c 'read -s -p \"".addslashes($prompt)."\" mypassword && echo \$mypassword'";
+    $password = rtrim(shell_exec($command));
+    echo "\n";
+    if (strlen($password) < 1) {
+        echo "No password provided";
+        die();
+    }
+}
+//$command = "/usr/local/bin/mysqldump -u root -p$password --databases -t {:siteName:} > $sqlDumpFile 2>$sqlDumpErrorFile";
+// system("echo $password | sudo -u root -S ".$command);
+//$result = shell_exec($command);
+//echo file_get_contents($sqlDumpErrorFile)."\n";
+
+require_once $autoLoaderDir;
+$bootstrapper = new \aae\util\Bootstrapper($rootDbConfig, $password);
+$bootstrapper->setModelDir($modelsDir);
+$bootstrapper->runSqlFile($setupDbDir);
+echo "Executed db setup file.\n";
+$classes = json_decode(file_get_contents($setupJsonDir));
+foreach ($classes as $class) {
+    $result  = $bootstrapper->intallMySQLComponentTables($class);
+    $message = ($result) ? "Successfully installed tables for '$class'\n" : "ERROR: could not install component '$class'\n";
+    echo $message;
+}
+foreach ($classes as $class) {
+    $result  = $bootstrapper->intallMySQLComponentFunctions($class);
+    $message = ($result) ? "Successfully installed functions for '$class'\n" : "ERROR: could not install component '$class'\n";
+    echo $message;
+}
+foreach ($classes as $class) {
+    $result  = $bootstrapper->intallMySQLComponentSetup($class);
+    $message = ($result) ? "Successfully installed setup for '$class'\n" : "ERROR: could not install component '$class'\n";
+    echo $message;
+}
+// if (file_exists($sqlRecoveryFile)) {
+//    $bootstrapper->runSqlFile($sqlRecoveryFile);
+//    echo "ran $sqlRecoveryFile\n";
+// }
+foreach ($classes as $class) {
+    $result  = $bootstrapper->intallMySQLComponentTriggers($class);
+    $message = ($result) ? "Successfully installed triggers for '$class'\n" : "ERROR: could not install component '$class'\n";
+    echo $message;
+}
+$bootstrapper->runSqlFile($postSetupDbDir);
+echo $bootstrapper->getMessageLog();
+//$secureImagesDir = $baseDir.DIRECTORY_SEPARATOR."{:siteName:}".DIRECTORY_SEPARATOR."resources".DIRECTORY_SEPARATOR."secureImages".DIRECTORY_SEPARATOR."profile";
+//$dynamicCSSDir   = dirname($baseDir).DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."{:siteName:}".DIRECTORY_SEPARATOR."css".DIRECTORY_SEPARATOR."dynamic";
+//$dynamicJSDir    = dirname($baseDir).DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."{:siteName:}".DIRECTORY_SEPARATOR."js" .DIRECTORY_SEPARATOR."dynamic";
+//system("echo $password | sudo -u root -S chmod 777 $secureImagesDir");
+//system("echo $password | sudo -u root -S chmod 777 $dynamicCSSDir");
+//system("echo $password | sudo -u root -S chmod 777 $dynamicJSDir");
+
+echo "done.\n";

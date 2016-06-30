@@ -1,0 +1,34 @@
+{
+	"logger": { /* optional: a default logger */
+		"class": "aae\\loggers\\DefaultLogger",
+		"settings": {"logDir": "/logs/default.log"}
+	},
+	"dbConfig": "dbConfigDefault.ini", /* optional. Default db settings file has at least dbName, dbUserName, dbPassword */
+	"persistence": {
+		"aae\\geo\\Track": "aae\\geo\\pa\\MySQL\\Track", /* MySQL objects know to load the global dbConfig file, if none is provided in adapter settings. */
+		"aae\\geo\\Point": {
+			"adapter": "aae\\geo\\pa\\MySQL\\Point",
+			"logger": {
+				"class": "aae\\loggers\\DebugLogger",
+				"logDir": "debuggingLogs/Point.log"
+			}
+		},
+		"aae\\geo\\TrackMetaData": {
+			"adapter": {
+				"class": "aae\\geo\\pa\\MySQL\\TrackMetaData",
+				"settings": { /* adapters can be provided with any additional settings in the form of an associative array */
+					"dbConfig": "dbConfig.ini" /* overwrites the dbDefault, has at least dbName */
+				}
+			},
+			"logger": null /* even if a logger is set, logging is disabled if logger is set to null or false */
+		},
+		"aae\\geo\\MetadataRecord": {
+			"adapter": {
+				"class": "aae\\geo\\pa\\FileSystem\\MetadataRecord",
+				"settings": {
+					"folder": "/www/applicationGeneratedFiles/MetadataRecords" /* overwrites the dbDefault, has at least dbName */
+				}
+			}
+		}
+	}
+}

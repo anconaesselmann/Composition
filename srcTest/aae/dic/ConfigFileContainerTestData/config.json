@@ -1,0 +1,16 @@
+{
+	"aae\\examples\\Car": {
+		"aae\\examples\\Driver": {
+			"aae\\examples\\Person": {
+				"aae\\examples\\Man": {
+					"Axel"
+				}
+			}
+		},
+		"aae\\examples\\Person": {
+			"aae\\examples\\Woman": {
+				"Sam"
+			}
+		}
+	}
+}

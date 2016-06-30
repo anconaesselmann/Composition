@@ -1,0 +1,9 @@
+CREATE TABLE artwork (
+	image_id   INT UNSIGNED NOT NULL,
+	title VARCHAR(255) NULL,
+    materials VARCHAR(255) NULL,
+    date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+	PRIMARY KEY (image_id),
+	FOREIGN KEY (image_id) REFERENCES images(image_id) ON DELETE CASCADE
+) ENGINE = InnoDB;

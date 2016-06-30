@@ -1,0 +1,41 @@
+.dep{
+    mar/*gin:1em;*/
+    width: 100%;
+    border: solid {$color2} .1em;
+}
+.depName {
+    background: {$color2};
+    padding: .2em 1em .2em 1em;
+    color:white;
+}
+.imp {
+  border: solid {$color2};
+  border-width: 0 0 .1em 0;
+}
+.imp:last-child {
+  border-width: 0;
+}
+.impName {
+  border: solid {$color2};
+  background: {$color2Light};
+  border-width: 0 0 .1em 0;
+  padding: .2em 1em .2em 1em;
+}
+.envs {
+
+}
+.env {
+  padding: .3em .5em 1em .5em;
+  display: inline-block;
+  border: solid {$color2};
+  border-width: 0 0 0 .1em;
+}
+.env:first-child {
+  border-width: 0;
+}
+.arg {
+  margin: .3em 0 0 1em;
+}
+.argName {
+  display: inline-block;
+}

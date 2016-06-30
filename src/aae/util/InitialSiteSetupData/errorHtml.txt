@@ -1,0 +1,2 @@
+
+        <div id="errorView"><p>{@errorLabel}: {$errorMessage}</p></div>

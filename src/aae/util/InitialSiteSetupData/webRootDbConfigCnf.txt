@@ -1,0 +1,5 @@
+[client]
+user=aae
+password=
+host=aae.db
+database={:siteName:}

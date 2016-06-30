@@ -1,0 +1,22 @@
+<?php
+/**
+ *
+ */
+namespace  {
+	/**
+	 * @author Axel Ancona Esselmann
+	 * @package
+	 */
+	class DefaultErrorTemplateController extends \aae\ui\ViewController {
+		// protected $_secureImage;
+
+  //       public function dependencies($secureImage, $profilesImageLocation) {
+  //           $this->_secureImage = $secureImage;
+  //           $this->_secureImage->setLocation($profilesImageLocation);
+  //       }
+
+        public function defaultAuthenticatedAction() {
+
+        }
+	}
+}

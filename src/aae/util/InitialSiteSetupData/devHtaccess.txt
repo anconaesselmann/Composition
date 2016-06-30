@@ -1,0 +1,29 @@
+<IfModule mod_rewrite.c>
+
+    # Tell PHP that the mod_rewrite module is ENABLED.
+    SetEnv HTTP_MOD_REWRITE On
+
+    RewriteEngine on
+
+    # change everything to http://www
+
+    RewriteCond %{HTTP_HOST} !^www\.
+    RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
+    # BEGIN Domain to folder mapping
+
+    ########################
+    # {:siteName:}.com
+
+    # pointing {:siteName:}.dev to {:siteName:}
+    ReWriteCond %{HTTP_HOST} ^(www\.)?{:siteName:}.dev
+    ReWriteCond %{REQUEST_URI} !{:siteName:}/
+    ReWriteRule ^(.*)$ {:siteName:}/$1 [L]
+
+    # pointing api.{:siteName:}.dev to api.{:siteName:}
+    ReWriteCond %{HTTP_HOST} ^(www\.)?api.{:siteName:}.dev
+    ReWriteCond %{REQUEST_URI} !api.{:siteName:}/
+    ReWriteRule ^(.*)$ api.{:siteName:}/$1 [L]
+
+    # END Domain to folder mapping
+</IfModule>

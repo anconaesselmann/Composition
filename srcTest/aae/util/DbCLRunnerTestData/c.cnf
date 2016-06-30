@@ -1,0 +1,5 @@
+[client]
+user=aUser
+password=aPW
+host=aHost
+database=aDB

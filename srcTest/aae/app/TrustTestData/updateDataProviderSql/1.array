@@ -1,0 +1,12 @@
+[
+    [
+        "user_trust_time",
+        ["user_id" => 1,
+        "trust_time_final" => 1]
+    ],
+    [
+        "user_trust_time",
+        ["user_id" => 2,
+        "trust_time_final" => 1]
+    ]
+]

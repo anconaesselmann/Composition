@@ -1,0 +1,8 @@
+DROP DATABASE {:siteName:};
+CREATE DATABASE {:siteName:};
+
+GRANT USAGE ON *.* TO '{:dbUser:}'@'{:dbHost:}';
+DROP USER '{:dbUser:}'@'{:dbHost:}';
+
+CREATE USER '{:dbUser:}'@'{:dbHost:}' IDENTIFIED BY '{:dbPassword:}';
+GRANT EXECUTE ON {:siteName:}.* TO '{:dbUser:}'@'{:dbHost:}';

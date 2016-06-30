@@ -1,0 +1,101 @@
+.voteSideBar {
+    border-right: solid #E6E6E6 .1em;
+    width: 1.75em;
+    height: 6em;
+    margin-right: .5em;
+    display: inline-block;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.psbBody {
+    height: 100%;
+    width: 100%;
+}
+
+.iconBox {
+    position: relative;
+    z-index: 1;
+}
+.icon {
+    display: none;
+}
+.current {
+    background-image:url("/svg/sprites.svg");
+    background-size: 8em 32em;
+    width: 100%;
+    height: 1.75em;
+    display: block;
+}
+.icon.noVote.current {
+    background-position: 0 -16em;
+}
+.icon.agree.current  {
+    background-position: -2em -16em;
+}
+.icon.object.current  {
+    background-position: -6em -16em;
+}
+.icon.disagree.current  {
+    background-position: -4em -16em;
+}
+
+.iconSelect {
+    display: none;
+    position: absolute;
+    top:1.75em;
+    right: 0;
+}
+.iconSelect.visible {
+    display: block;
+}
+.is1 {
+    background-image:url("/svg/sprites.svg");
+    background-position: 0 -18em;
+    width:1em;
+    height:1em;
+}
+.is1:hover {
+    background-position: -1em -18em;
+}
+.is1.current {
+    background-position: -2em -18em;
+}
+.is1.current:hover {
+    background-position: -3em -18em;
+}
+.is2 {
+    background-image:url("/svg/sprites.svg");
+    background-position: 0 -19em;
+    width:1em;
+    height:1em;
+}
+.is2:hover {
+    background-position: -1em -19em;
+}
+.is2.current {
+    background-position: -2em -19em;
+}
+.is2.current:hover {
+    background-position: -3em -19em;
+}
+.is3 {
+    background-image:url("/svg/sprites.svg");
+    background-position: 0 -20em;
+    width:1em;
+    height:1em;
+}
+.is3:hover {
+    background-position: -1em -20em;
+}
+.is3.current {
+    background-position: -2em -20em;
+}
+.is3.current:hover {
+    background-position: -3em -20em;
+}
+
+
+.comments a {
+    color:#666666;
+}

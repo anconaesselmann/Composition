@@ -1,0 +1,9 @@
+CREATE TABLE images (
+	image_id   INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	contractor_id INT UNSIGNED NOT NULL,
+	file_name VARCHAR(255) NOT NULL,
+	upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+	PRIMARY KEY (image_id),
+	FOREIGN KEY (contractor_id) REFERENCES users(user_id) ON DELETE CASCADE
+) ENGINE = InnoDB;

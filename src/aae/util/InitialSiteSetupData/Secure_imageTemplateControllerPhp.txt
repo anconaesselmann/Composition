@@ -1,0 +1,31 @@
+<?php
+/**
+ *
+ */
+namespace  {
+	/**
+	 * @author Axel Ancona Esselmann
+	 * @package
+	 */
+	class Secure_imageTemplateController extends \aae\ui\AuthenticatedViewController {
+		protected $_secureImage;
+
+        public $headers;
+
+        public function dependencies($secureImage, $secureImageLocation) {
+            $this->_secureImage = $secureImage;
+            $this->_secureImage->setLocation($secureImageLocation);
+        }
+        public function getAction() {
+            // TODO: set header
+            header('HTTP/1.0 401 Unauthorized');
+            throw new \Exception("Not logged in!", 1206140413);
+            return false;
+        }
+        public function getAuthenticatedAction() {
+            $args     = func_get_args();
+            $fileName = implode(DIRECTORY_SEPARATOR, $args);
+            $this->_secureImage->get($fileName);
+        }
+	}
+}

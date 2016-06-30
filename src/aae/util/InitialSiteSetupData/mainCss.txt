@@ -1,0 +1,13 @@
+body {
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    margin: 0;
+    background-color: #E6E6E6;
+}
+#content {
+    margin: 0;
+    background-color: white;
+    float: left;
+    width: 100%;
+    padding: 1em;
+    min-height: 25em;
+}
